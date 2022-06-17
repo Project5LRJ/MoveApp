@@ -1,16 +1,18 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View } from 'react-native';
+import { StyleSheet } from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import LoginScreen from './components/LoginScreen';
 import AchievementsScreen from './components/AchievementsScreen';
+import AppStateContextProvider from "./AppStateContext";
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
+//Main stack die het loginscherm en de tabnavigator bevat
 const StackNav = () => {
   return (
     <Stack.Navigator
@@ -33,6 +35,7 @@ const StackNav = () => {
   );
 }
 
+//Tabnavigator die de verschillende schermen bevat
 const TabNav = () => {
   return (
     <Tab.Navigator
@@ -56,9 +59,11 @@ const TabNav = () => {
 
 const App = () => {
   return (
-    <NavigationContainer>
-      <StackNav/>
-    </NavigationContainer>
+      <NavigationContainer>
+        <AppStateContextProvider>
+          <StackNav/>
+        </AppStateContextProvider>
+      </NavigationContainer>
   );
 }
 
