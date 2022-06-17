@@ -10,10 +10,13 @@ const StackNav = () => {
     //TODO: extra screens toevoegen voor toevoegen en bewerken
     <Stack.Navigator
       initialRouteName="AchievementsOverview"
-      screenOptions={{headerShown: false}}>
+      >
       <Stack.Screen
         name="AchievementsOverview"
         component={AchievementsOverview}
+        options={{
+          title: 'SummaMove',
+        }}
         />
     </Stack.Navigator>
   );

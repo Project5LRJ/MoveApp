@@ -16,7 +16,8 @@ const Tab = createMaterialBottomTabNavigator();
 const StackNav = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Login">
+      initialRouteName="Login"
+      screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="Login"
         component={LoginScreen}
@@ -28,7 +29,7 @@ const StackNav = () => {
         name="Tabs"
         component={TabNav}
         options={{
-          title: 'SummaMove',
+          title: 'Tab Navigator',
         }}
       />
     </Stack.Navigator>
