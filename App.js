@@ -7,6 +7,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { createMaterialBottomTabNavigator } from '@react-navigation/material-bottom-tabs';
 import LoginScreen from './components/LoginScreen';
 import AchievementsScreen from './components/AchievementsScreen';
+import ExercisesScreen from './components/ExercisesScreen';
 import AppStateContextProvider from "./AppStateContext";
 
 const Stack = createStackNavigator();
@@ -41,9 +42,18 @@ const StackNav = () => {
 const TabNav = () => {
   return (
     <Tab.Navigator
-        initialRouteName="Achievements"
+        initialRouteName="Exercises"
         activeColor="#ffffff"
         barStyle={{ backgroundColor: '#3F3E3E' }}>
+        <Tab.Screen
+            name="Exercises"
+            component={ExercisesScreen}
+            options={{
+                tabBarLabel: 'Exercises',
+                tabBarIcon: ({ color }) => (
+                    <MaterialCommunityIcons name="arm-flex-outline" color={color} size={24} />
+                ),
+            }}/>
         <Tab.Screen 
         name="Achievements" 
         component={AchievementsScreen}
