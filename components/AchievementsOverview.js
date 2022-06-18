@@ -3,7 +3,7 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Card, Paragraph, Button } from 'react-native-paper';
 import { AppStateContext } from "../AppStateContext";
 
-const AchievementsOverview = ({ navigation, props }) => {
+const AchievementsOverview = ({ navigation }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [achievements, setAchievements] = useState();
 
@@ -40,7 +40,7 @@ const AchievementsOverview = ({ navigation, props }) => {
         <Paragraph>{item.description}</Paragraph>
       </Card.Content>
       <Card.Actions>
-        <Button style={styles.cardbutton} mode="outlined" onPress={() =>  console.log('edit')}>Edit</Button>
+        <Button style={styles.cardbutton} mode="outlined" onPress={() => navigation.navigate('AchievementsEdit')}>Edit</Button>
         <Button style={styles.cardbutton} mode="outlined" onPress={() => console.log('delete')}>Delete</Button>
       </Card.Actions>
     </Card>

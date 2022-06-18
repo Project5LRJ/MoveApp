@@ -2,13 +2,14 @@ import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import { IconButton } from 'react-native-paper';
 import AchievementsOverview from './AchievementsOverview';
+import AchievementsEdit from './AchievementsEdit';
 import React from 'react'
 
 const Stack = createStackNavigator();
 
 const StackNav = () => {
   return (
-    //TODO: extra screens toevoegen voor toevoegen en bewerken
+    //TODO: extra screen toevoegen voor toevoegen
     <Stack.Navigator
       initialRouteName="AchievementsOverview"
       op
@@ -23,6 +24,13 @@ const StackNav = () => {
             size={30}
             onPress={() => console.log('add')}
           />
+        }}
+      />
+      <Stack.Screen
+        name="AchievementsEdit"
+        component={AchievementsEdit}
+        options={{
+          title: 'SummaMove'
         }}
       />
     </Stack.Navigator>
