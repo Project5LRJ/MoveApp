@@ -37,6 +37,7 @@ const StackNav = () => {
 }
 
 //Tabnavigator die de verschillende schermen bevat
+//TODO: extra screens toevoegen voor exercises en about
 const TabNav = () => {
   return (
     <Tab.Navigator

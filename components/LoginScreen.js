@@ -43,8 +43,8 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} value={email} onChangeText={(value) => { setEmail(value) }} />
-      <TextInput secureTextEntry={true} style={styles.input} value={password} onChangeText={(value) => { setPassword(value) }} />
+      <TextInput style={styles.input} placeholder="Email address" value={email} onChangeText={(value) => { setEmail(value) }} />
+      <TextInput secureTextEntry={true} style={styles.input} placeholder="Password" value={password} onChangeText={(value) => { setPassword(value) }} />
       <Button mode="contained" style={styles.button} onPress={() => login()}>
         Login
       </Button>

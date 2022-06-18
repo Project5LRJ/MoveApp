@@ -40,7 +40,8 @@ const AchievementsOverview = ({ navigation, props }) => {
         <Paragraph>{item.description}</Paragraph>
       </Card.Content>
       <Card.Actions>
-        <Button style={{ margin: 5 }} mode="contained">Edit</Button>
+        <Button style={styles.cardbutton} mode="outlined" onPress={() =>  console.log('edit')}>Edit</Button>
+        <Button style={styles.cardbutton} mode="outlined" onPress={() => console.log('delete')}>Delete</Button>
       </Card.Actions>
     </Card>
   );
@@ -52,10 +53,10 @@ const AchievementsOverview = ({ navigation, props }) => {
   return (
     <View>
       <FlatList
+        style={{marginTop: 20}}
         data={achievements}
         renderItem={renderItem}
         keyExtractor={item => item.id}
-        style={{ marginTop: 20 }}
         refreshControl={
           <RefreshControl
             refreshing={isLoading}
@@ -71,7 +72,16 @@ export default AchievementsOverview
 
 const styles = StyleSheet.create({
   card: {
+    elevation: 4,
     marginBottom: 20,
     marginHorizontal: 20
+  },
+  cardbutton: {
+    margin: 5,
+    backgroundColor: '#EFEFEF'
+  },
+  addbutton: {
+    marginHorizontal: 20,
+    marginVertical: 10
   }
 })
