@@ -44,7 +44,6 @@ const LoginScreen = ({ navigation }) => {
     }
     catch (error) {
       console.error(error);
-      Alert.alert('Error', 'An error has occured!');
     }
   }
 
