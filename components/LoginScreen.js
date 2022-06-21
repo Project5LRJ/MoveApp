@@ -1,11 +1,12 @@
-import { StyleSheet, View } from 'react-native';
+import { StyleSheet, View, Alert } from 'react-native';
 import React, { useState, useContext } from 'react';
-import { TextInput, Button } from 'react-native-paper';
+import { TextInput, Button, HelperText } from 'react-native-paper';
 import { AppStateContext } from "../AppStateContext";
 
 const LoginScreen = ({ navigation }) => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const [loginUnsuccessfull, setLoginUnsuccessfull] = useState();
 
   const context = useContext(AppStateContext);
 
@@ -29,22 +30,29 @@ const LoginScreen = ({ navigation }) => {
 
       //Als json access token bevat
       if (json.access_token) {
+        setLoginUnsuccessfull(false);
+
         //Verander access token in global state
         context.actions.changeToken("Bearer " + json.access_token);
 
         //Navigeer naar tab screen
         navigation.navigate('Tabs');
       }
+      if (json.message) {
+        setLoginUnsuccessfull(true);
+      }
     }
     catch (error) {
       console.error(error);
+      Alert.alert('Error', 'An error has occured!');
     }
   }
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} placeholder="Email address" value={email} onChangeText={(value) => { setEmail(value) }} />
-      <TextInput secureTextEntry={true} style={styles.input} placeholder="Password" value={password} onChangeText={(value) => { setPassword(value) }} />
+      <TextInput style={styles.input} placeholder="Email address" value={email} onChangeText={(value) => { setEmail(value) }} error={loginUnsuccessfull} />
+      <TextInput secureTextEntry={true} style={styles.input} placeholder="Password" value={password} onChangeText={(value) => { setPassword(value) }} error={loginUnsuccessfull} />
+      <HelperText style={[styles.error, loginUnsuccessfull ? null : {display: 'none'}]} type='error'>Invalid credentials!</HelperText>
       <Button mode="contained" style={styles.button} onPress={() => login()}>
         Login
       </Button>
@@ -64,9 +72,13 @@ const styles = StyleSheet.create({
   input: {
     width: '80%',
     height: 45,
-    marginBottom: 30,
+    marginBottom: 20
   },
   button: {
     width: '80%'
+  },
+  error: {
+    fontSize: 15,
+    marginBottom: 20
   }
 })

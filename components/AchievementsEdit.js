@@ -11,7 +11,7 @@ const AchievementsEdit = ({ route }) => {
   const [exercises, setExercises] = useState();
   const [isFocus, setIsFocus] = useState(false);
 
-  const context = useContext(AppStateContext);
+  const appContext = useContext(AppStateContext);
 
   //Alle Exercises ophalen
   const fetchExercises = async () => {
@@ -30,6 +30,31 @@ const AchievementsEdit = ({ route }) => {
       console.error(error);
     }
   }
+
+  const saveAchievement = async () => {
+    try {
+      const response = await fetch(`http://10.0.2.2:8000/api/achievements/${route.params.id}`, {
+        method: 'PATCH',
+        headers: {
+          Accept: 'application/json',
+          Authorization: appContext.appState.accessToken,
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({
+          title: title,
+          description: description,
+          exercise_id: exerciseId
+        })
+      })
+      const json = await response.json();
+      setTitle(json.title);
+      setDescription(json.description);
+      setExerciseId(json.exercise_id);
+    }
+    catch (error) {
+      console.error(error);
+    }
+  } 
 
   useEffect(() => {
     fetchExercises();
@@ -54,7 +79,7 @@ const AchievementsEdit = ({ route }) => {
         }}
       />
 
-      <Button mode="contained" style={styles.button} onPress={() => console.log(exerciseId)}>
+      <Button mode="contained" style={styles.button} onPress={() => saveAchievement()}>
         Save
       </Button>
     </View>
