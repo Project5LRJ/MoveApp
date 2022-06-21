@@ -18,7 +18,7 @@ const StackNav = () => {
         name="AchievementsOverview"
         component={AchievementsOverview}
         options={{
-          title: 'SummaMove',
+          title: 'Achievements',
           headerRight: () => <IconButton
             icon="plus"
             size={30}
@@ -30,7 +30,7 @@ const StackNav = () => {
         name="AchievementsEdit"
         component={AchievementsEdit}
         options={{
-          title: 'SummaMove'
+          title: 'Edit Achievement'
         }}
       />
     </Stack.Navigator>

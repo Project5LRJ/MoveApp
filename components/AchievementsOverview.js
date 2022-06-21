@@ -40,7 +40,12 @@ const AchievementsOverview = ({ navigation }) => {
         <Paragraph>{item.description}</Paragraph>
       </Card.Content>
       <Card.Actions>
-        <Button style={styles.cardbutton} mode="outlined" onPress={() => navigation.navigate('AchievementsEdit')}>Edit</Button>
+        <Button style={styles.cardbutton} mode="outlined" onPress={() => navigation.navigate('AchievementsEdit', {
+          id: item.id,
+          title: item.title,
+          description: item.description,
+          exercise_id: item.exercise_id
+        })}>Edit</Button>
         <Button style={styles.cardbutton} mode="outlined" onPress={() => console.log('delete')}>Delete</Button>
       </Card.Actions>
     </Card>
