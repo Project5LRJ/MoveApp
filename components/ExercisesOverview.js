@@ -40,11 +40,7 @@ const ExercisesOverview = ({ navigation }) => {
             <Card.Actions>
                 <Button style={styles.cardbutton} mode="outlined" onPress={() => navigation.navigate('ExercisesDetails', {
                     //Variables van de exercise doorsturen naar het details scherm
-                    id: item.id,
-                    title: item.title,
-                    description: item.description,
-                    description_NL: item.description_NL,
-                    description_ENG: item.description_ENG,
+                    id: item.id, title: item.title, description: item.description, description_NL: item.description_NL, description_ENG: item.description_ENG,
                 })}>Details</Button>
             </Card.Actions>
         </Card>

@@ -8,6 +8,7 @@ import { createMaterialBottomTabNavigator } from '@react-navigation/material-bot
 import LoginScreen from './components/LoginScreen';
 import AchievementsScreen from './components/AchievementsScreen';
 import ExercisesScreen from './components/ExercisesScreen';
+import QrScreen from './components/QrScreen';
 import AppStateContextProvider from "./AppStateContext";
 
 const Stack = createStackNavigator();
@@ -63,6 +64,15 @@ const TabNav = () => {
             <MaterialCommunityIcons name="medal-outline" color={color} size={24} />
           ),
         }}/>
+        <Tab.Screen
+            name="QrScanner"
+            component={QrScreen}
+            options={{
+                tabBarLabel: 'Qr-Scanner',
+                tabBarIcon: ({ color }) => (
+                    <MaterialCommunityIcons name="barcode-scan" color={color} size={24} />
+                ),
+            }}/>
       </Tab.Navigator>
   )
 }
