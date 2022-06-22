@@ -19,7 +19,7 @@ const Tab = createMaterialBottomTabNavigator();
 const StackNav = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Tabs"
+      initialRouteName="Login"
       screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="Login"
@@ -56,15 +56,7 @@ const TabNav = () => {
                     <MaterialCommunityIcons name="arm-flex-outline" color={color} size={24} />
                 ),
             }}/>
-            <Tab.Screen
-            name="About"
-            component={AboutScreen}
-            options={{
-                tabBarLabel: 'About',
-                tabBarIcon: ({ color }) => (
-                    <MaterialCommunityIcons name="arm-flex-outline" color={color} size={24} />
-                ),
-            }}/>
+            
         <Tab.Screen 
         name="Achievements" 
         component={AchievementsScreen}
@@ -81,6 +73,15 @@ const TabNav = () => {
                 tabBarLabel: 'Qr-Scanner',
                 tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="barcode-scan" color={color} size={24} />
+                ),
+            }}/>
+            <Tab.Screen
+            name="About"
+            component={AboutScreen}
+            options={{
+                tabBarLabel: 'About',
+                tabBarIcon: ({ color }) => (
+                    <MaterialCommunityIcons name="alpha-i-box-outline" color={color} size={24} />
                 ),
             }}/>
       </Tab.Navigator>
