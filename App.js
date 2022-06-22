@@ -9,6 +9,7 @@ import LoginScreen from './components/LoginScreen';
 import AchievementsScreen from './components/AchievementsScreen';
 import ExercisesScreen from './components/ExercisesScreen';
 import QrScreen from './components/QrScreen';
+import AboutScreen from './components/AboutScreen';
 import AppStateContextProvider from "./AppStateContext";
 
 const Stack = createStackNavigator();
@@ -18,7 +19,7 @@ const Tab = createMaterialBottomTabNavigator();
 const StackNav = () => {
   return (
     <Stack.Navigator
-      initialRouteName="Login"
+      initialRouteName="Tabs"
       screenOptions={{headerShown: false}}>
       <Stack.Screen
         name="Login"
@@ -51,6 +52,15 @@ const TabNav = () => {
             component={ExercisesScreen}
             options={{
                 tabBarLabel: 'Exercises',
+                tabBarIcon: ({ color }) => (
+                    <MaterialCommunityIcons name="arm-flex-outline" color={color} size={24} />
+                ),
+            }}/>
+            <Tab.Screen
+            name="About"
+            component={AboutScreen}
+            options={{
+                tabBarLabel: 'About',
                 tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="arm-flex-outline" color={color} size={24} />
                 ),
