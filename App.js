@@ -67,7 +67,7 @@ const TabNav = () => {
           ),
         }}/>
         <Tab.Screen
-            name="QrScanner"
+            name="QrScreen"
             component={QrScreen}
             options={{
                 tabBarLabel: 'Qr-Scanner',

@@ -11,11 +11,9 @@ const Stack = createStackNavigator();
 const StackNav = () => {
     return (
         <Stack.Navigator
-            initialRouteName="About"
-            op
-        >
+            initialRouteName="AboutScreen">
             <Stack.Screen
-                name="About"
+                name="AboutScreen"
                 component={About}
                 options={{
                     title: 'About',

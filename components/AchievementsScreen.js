@@ -11,9 +11,7 @@ const StackNav = () => {
   return (
     //TODO: extra screen toevoegen voor toevoegen
     <Stack.Navigator
-      initialRouteName="AchievementsOverview"
-      op
-    >
+      initialRouteName="AchievementsOverview">
       <Stack.Screen
         name="AchievementsOverview"
         component={AchievementsOverview}

@@ -12,9 +12,7 @@ const Stack = createStackNavigator();
 const StackNav = () => {
     return (
         <Stack.Navigator
-            initialRouteName="ExercisesOverview"
-            op
-        >
+            initialRouteName="ExercisesOverview">
             <Stack.Screen
                 name="ExercisesOverview"
                 component={ExercisesOverview}
