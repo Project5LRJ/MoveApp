@@ -4,14 +4,36 @@ import { TextInput, Button } from 'react-native-paper';
 import { Dropdown } from 'react-native-element-dropdown';
 import { AppStateContext } from "../AppStateContext";
 
-const AchievementsEdit = ({ route }) => {
+const AchievementsEdit = ({ navigation, route }) => {
   const [title, setTitle] = useState(route.params.title);
   const [description, setDescription] = useState(route.params.description);
   const [exerciseId, setExerciseId] = useState(route.params.exercise_id);
   const [exercises, setExercises] = useState();
-  const [isFocus, setIsFocus] = useState(false);
+
+  const [titleError, setTitleError] = useState(false);
+  const [descriptionError, setDescriptionError] = useState(false);
 
   const appContext = useContext(AppStateContext);
+
+  const validate = () => {
+    let success = true;
+
+    if (!title) {
+      success = false;
+      setTitleError(true);
+    } else {
+      setTitleError(false);
+    }
+
+    if (!description) {
+      success = false;
+      setDescriptionError(true);
+    } else {
+      setDescriptionError(false);
+    }
+
+    return success;
+  }
 
   //Alle Exercises ophalen
   const fetchExercises = async () => {
@@ -32,29 +54,28 @@ const AchievementsEdit = ({ route }) => {
   }
 
   const saveAchievement = async () => {
-    try {
-      const response = await fetch(`http://10.0.2.2:8000/api/achievements/${route.params.id}`, {
-        method: 'PATCH',
-        headers: {
-          Accept: 'application/json',
-          Authorization: appContext.appState.accessToken,
-          'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-          title: title,
-          description: description,
-          exercise_id: exerciseId
+    if (validate()) {
+      try {
+        const response = await fetch(`http://10.0.2.2:8000/api/achievements/${route.params.id}`, {
+          method: 'PATCH',
+          headers: {
+            Accept: 'application/json',
+            Authorization: appContext.appState.accessToken,
+            'Content-Type': 'application/json'
+          },
+          body: JSON.stringify({
+            title: title,
+            description: description,
+            exercise_id: exerciseId
+          })
         })
-      })
-      const json = await response.json();
-      setTitle(json.title);
-      setDescription(json.description);
-      setExerciseId(json.exercise_id);
+        navigation.push('AchievementsOverview');
+      }
+      catch (error) {
+        console.error(error);
+      }
     }
-    catch (error) {
-      console.error(error);
-    }
-  } 
+  }
 
   useEffect(() => {
     fetchExercises();
@@ -62,8 +83,8 @@ const AchievementsEdit = ({ route }) => {
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} placeholder="Title" value={title} onChangeText={(value) => { setTitle(value) }} />
-      <TextInput style={styles.inputmultiline} placeholder="Description" value={description} multiline={true} numberOfLines={5} onChangeText={(value) => { setDescription(value) }} />
+      <TextInput style={styles.input} placeholder="Title" value={title} onChangeText={(value) => { setTitle(value) }} error={titleError}/>
+      <TextInput style={styles.inputmultiline} placeholder="Description" value={description} multiline={true} numberOfLines={5} onChangeText={(value) => { setDescription(value) }} error={descriptionError}/>
       <Dropdown
         style={styles.dropdown}
         data={exercises}
@@ -129,5 +150,5 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-  },  
+  },
 })
