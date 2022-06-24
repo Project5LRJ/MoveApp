@@ -3,6 +3,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { IconButton } from 'react-native-paper';
 import AchievementsOverview from './AchievementsOverview';
 import AchievementsEdit from './AchievementsEdit';
+import AchievementsCreate from './AchievementsCreate';
 import React from 'react'
 
 const Stack = createStackNavigator();
@@ -15,14 +16,14 @@ const StackNav = () => {
       <Stack.Screen
         name="AchievementsOverview"
         component={AchievementsOverview}
-        options={{
+        options={({navigation}) => ({
           title: 'Achievements',
           headerRight: () => <IconButton
             icon="plus"
             size={30}
-            onPress={() => console.log('add')}
+            onPress={() => navigation.navigate('AchievementsCreate')}
           />
-        }}
+        })}
       />
       <Stack.Screen
         name="AchievementsEdit"
@@ -31,6 +32,13 @@ const StackNav = () => {
           title: 'Edit Achievement'
         }}
       />
+        <Stack.Screen
+            name="AchievementsCreate"
+            component={AchievementsCreate}
+            options={{
+                title: 'Create Achievement'
+            }}
+        />
     </Stack.Navigator>
   );
 }
