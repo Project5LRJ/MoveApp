@@ -10,6 +10,7 @@ import AchievementsScreen from './components/AchievementsScreen';
 import ExercisesScreen from './components/ExercisesScreen';
 import QrScreen from './components/QrScreen';
 import AboutScreen from './components/AboutScreen';
+import LanguageScreen from './components/LanguageScreen';
 import AppStateContextProvider from "./AppStateContext";
 
 const Stack = createStackNavigator();
@@ -82,6 +83,15 @@ const TabNav = () => {
                 tabBarLabel: 'About',
                 tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="alpha-i-box-outline" color={color} size={24} />
+                ),
+            }}/>
+            <Tab.Screen
+            name="Language"
+            component={LanguageScreen}
+            options={{
+                tabBarLabel: 'Language',
+                tabBarIcon: ({ color }) => (
+                    <MaterialCommunityIcons name="translate" color={color} size={24} />
                 ),
             }}/>
       </Tab.Navigator>
