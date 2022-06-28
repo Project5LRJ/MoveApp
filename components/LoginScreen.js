@@ -38,7 +38,7 @@ const LoginScreen = ({ navigation }) => {
       try {
         //login API call
         //10.0.2.2 is localhost van je PC in android emulator
-        const response = await fetch('http://10.0.2.2:8000/api/login', {
+        const response = await fetch('http://summamove.laurenskosters.nl/api/login', {
           method: 'POST',
           headers: {
             Accept: 'application/json',

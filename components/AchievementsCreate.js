@@ -38,7 +38,7 @@ const AchievementsCreate = ({ navigation }) => {
     //Alle Exercises ophalen
     const fetchExercises = async () => {
         try {
-            const response = await fetch('http://10.0.2.2:8000/api/exercises', {
+            const response = await fetch('http://summamove.laurenskosters.nl/api/exercises', {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',
@@ -56,7 +56,7 @@ const AchievementsCreate = ({ navigation }) => {
     const saveAchievement = async () => {
         if (validate()) {
             try {
-                const response = await fetch(`http://10.0.2.2:8000/api/achievements`, {
+                const response = await fetch(`http://summamove.laurenskosters.nl/api/achievements`, {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json',

@@ -1,0 +1,15 @@
+{
+    "translation": {
+      "email address":"Emailadres",
+      "password":"Wachtwoord",
+      "login":"Inloggen",
+      "title": "Titel",
+      "description": "Beschrijving",
+      "exercises":"Oefeningen",
+      "achievements":"Prestaties",
+      "edit":"Bewerken",
+      "delete":"Verwijderen",
+      "about":"Over",
+      "language":"Taal"
+    }
+}

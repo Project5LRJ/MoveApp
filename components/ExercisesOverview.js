@@ -15,7 +15,7 @@ const ExercisesOverview = ({ navigation }) => {
         try {
             setIsLoading(true);
 
-            const response = await fetch('http://10.0.2.2:8000/api/exercises', {
+            const response = await fetch('http://summamove.laurenskosters.nl/api/exercises', {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',

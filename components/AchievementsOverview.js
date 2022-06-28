@@ -13,7 +13,7 @@ const AchievementsOverview = ({ navigation }) => {
     try {
       setIsLoading(true);
       //Doe login API call
-      const response = await fetch('http://10.0.2.2:8000/api/user/achievements', {
+      const response = await fetch('http://summamove.laurenskosters.nl/api/user/achievements', {
         method: 'GET',
         headers: {
           Accept: 'application/json',

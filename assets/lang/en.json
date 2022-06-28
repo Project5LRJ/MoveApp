@@ -1,0 +1,15 @@
+{
+    "translation": {
+      "email address":"Email address",
+      "password":"Password",
+      "login":"Login",
+      "title": "Title",
+      "description": "Description",
+      "exercises":"Excersises",
+      "achievements":"Achievements",
+      "edit":"Edit",
+      "delete":"Delete",
+      "about":"About",
+      "language":"Language"
+    }
+}
