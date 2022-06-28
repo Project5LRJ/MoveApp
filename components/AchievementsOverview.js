@@ -12,7 +12,6 @@ const AchievementsOverview = ({ navigation }) => {
   const fetchAchievements = async () => {
     try {
       setIsLoading(true);
-      //Doe login API call
       const response = await fetch('http://summamove.laurenskosters.nl/api/user/achievements', {
         method: 'GET',
         headers: {
@@ -33,6 +32,22 @@ const AchievementsOverview = ({ navigation }) => {
     }
   }
 
+  const deleteAchievement = async (id) => {
+    try {
+      const response = await fetch(`http://summamove.laurenskosters.nl/api/achievements/${id}`, {
+        method: 'DELETE',
+        headers: {
+          Accept: 'application/json',
+          Authorization: appContext.appState.accessToken
+        },
+      })
+      fetchAchievements();
+    }
+    catch (error) {
+      console.error(error);
+    }
+  }
+
   const renderItem = ({ item }) => (
     <Card style={styles.card}>
       <Card.Title title={item.title} />
@@ -46,7 +61,7 @@ const AchievementsOverview = ({ navigation }) => {
           description: item.description,
           exercise_id: item.exercise_id
         })}>Edit</Button>
-        <Button style={styles.cardbutton} mode="outlined" onPress={() => console.log('delete')}>Delete</Button>
+        <Button style={styles.cardbutton} mode="outlined" onPress={() => deleteAchievement(item.id)}>Delete</Button>
       </Card.Actions>
     </Card>
   );
