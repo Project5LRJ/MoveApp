@@ -1,11 +1,14 @@
 import React, { useState, useEffect } from 'react';
 import { Text, View, StyleSheet, Button } from 'react-native';
 import { BarCodeScanner } from 'expo-barcode-scanner';
+import { useTranslation } from 'react-i18next';
 
 export default function QrScanner({ navigation }) {
+    const { t } = useTranslation();
+
     const [hasPermission, setHasPermission] = useState(null);
     const [scanned, setScanned] = useState(false);
-    const [text, setText] = useState('Not yet scanned')
+    const [text, setText] = useState(t('not scanned yet'))
 
     const askForCameraPermission = () => {
         (async () => {
@@ -25,7 +28,7 @@ export default function QrScanner({ navigation }) {
         setText(data)
         console.log('Type: ' + type + '\nData: ' + data)
         navigation.navigate('QrDetails', {
-            title: 'QR exercise',
+            title: t('qr exercise'),
             description_NL: '',
             description_ENG: data,
         });
@@ -35,14 +38,14 @@ export default function QrScanner({ navigation }) {
     if (hasPermission === null) {
         return (
             <View style={styles.container}>
-                <Text>Requesting for camera permission</Text>
+                <Text>{t('requesting camera permission')}</Text>
             </View>)
     }
     if (hasPermission === false) {
         return (
             <View style={styles.container}>
-                <Text style={{ margin: 10 }}>No access to camera</Text>
-                <Button title={'Allow Camera'} onPress={() => askForCameraPermission()} />
+                <Text style={{ margin: 10 }}>{t('no access to camera')}</Text>
+                <Button title={t('allow Camera')} onPress={() => askForCameraPermission()} />
             </View>)
     }
 
@@ -56,7 +59,7 @@ export default function QrScanner({ navigation }) {
             </View>
             <Text style={styles.maintext}>{text}</Text>
 
-            {scanned && <Button title={'Scan again?'} onPress={() => setScanned(false)} color='tomato' />}
+            {scanned && <Button title={t('scan again')} onPress={() => setScanned(false)} color='tomato' />}
         </View>
     );
 }

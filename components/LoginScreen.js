@@ -1,9 +1,12 @@
 import { StyleSheet, View, Alert } from 'react-native';
 import React, { useState, useContext } from 'react';
 import { TextInput, Button, HelperText } from 'react-native-paper';
+import {useTranslation} from 'react-i18next';
 import { AppStateContext } from "../AppStateContext";
 
 const LoginScreen = ({ navigation }) => {
+  const { t } = useTranslation();
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -37,7 +40,6 @@ const LoginScreen = ({ navigation }) => {
     if (validate()) {
       try {
         //login API call
-        //10.0.2.2 is localhost van je PC in android emulator
         const response = await fetch('http://summamove.laurenskosters.nl/api/login', {
           method: 'POST',
           headers: {
@@ -75,11 +77,11 @@ const LoginScreen = ({ navigation }) => {
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} placeholder="Email address" value={email} onChangeText={(value) => { setEmail(value) }} error={emailError} />
-      <TextInput secureTextEntry={true} style={styles.input} placeholder="Password" value={password} onChangeText={(value) => { setPassword(value) }} error={passwordError} />
-      <HelperText style={[styles.error, loginUnsuccessfull ? null : { display: 'none' }]} type='error'>Invalid credentials!</HelperText>
+      <TextInput style={styles.input} placeholder={t('email address')} value={email} onChangeText={(value) => { setEmail(value) }} error={emailError} />
+      <TextInput secureTextEntry={true} style={styles.input} placeholder={t('password')} value={password} onChangeText={(value) => { setPassword(value) }} error={passwordError} />
+      <HelperText style={[styles.error, loginUnsuccessfull ? null : { display: 'none' }]} type='error'>{t('invalid credentials')}</HelperText>
       <Button mode="contained" style={styles.button} onPress={() => login()}>
-        Login
+        {t('login')}
       </Button>
     </View>
   )

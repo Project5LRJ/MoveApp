@@ -4,6 +4,7 @@ import en from './en.json';
 import nl from './nl.json';
   
 i18n.use(initReactI18next).init({
+  compatibilityJSON: 'v3',
   lng: 'en',
   fallbackLng: 'en',
   resources: {

@@ -3,12 +3,15 @@ import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import About from './About';
 import React from 'react';
+import {useTranslation} from 'react-i18next';
 
 //Maakt stack naviagtion aan
 const Stack = createStackNavigator();
 
 //Stack navigation voor het exercises sherm
 const StackNav = () => {
+    const { t } = useTranslation();
+
     return (
         <Stack.Navigator
             initialRouteName="AboutScreen">
@@ -16,7 +19,7 @@ const StackNav = () => {
                 name="AboutScreen"
                 component={About}
                 options={{
-                    title: 'About',
+                    title: t('about'),
                 }}
             />
         </Stack.Navigator>

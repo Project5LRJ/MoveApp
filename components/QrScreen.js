@@ -3,30 +3,31 @@ import { StyleSheet } from 'react-native'
 import { createStackNavigator } from '@react-navigation/stack';
 import QrScanner from './QrScanner';
 import React from 'react'
-import QrDetails from "./ExercisesDetails";
+import QrDetails from "./QrDetails";
+import { useTranslation } from 'react-i18next';
 
 //Maakt stack naviagtion aan
 const Stack = createStackNavigator();
 
 //Stack navigation voor het exercises sherm
 const StackNav = () => {
+    const { t } = useTranslation();
+
     return (
         <Stack.Navigator
-            initialRouteName="QrScanner"
-            op
-        >
+            initialRouteName="QrScanner">
             <Stack.Screen
                 name="QrScanner"
                 component={QrScanner}
                 options={{
-                    title: 'QrScanner',
+                    title: t('qr scanner'),
                 }}
             />
             <Stack.Screen
                 name="QrDetails"
                 component={QrDetails}
                 options={{
-                    title: 'QrDetails'
+                    title: 'QR details'
                 }}
             />
         </Stack.Navigator>
@@ -34,12 +35,12 @@ const StackNav = () => {
 }
 
 //Laat de stacknaviagtion zien
-const ExercisesScreen = () => {
+const QrScreen = () => {
     return (
         <StackNav />
     )
 }
 
-export default ExercisesScreen
+export default QrScreen
 
 const styles = StyleSheet.create({})

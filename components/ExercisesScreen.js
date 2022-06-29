@@ -4,12 +4,16 @@ import { createStackNavigator } from '@react-navigation/stack';
 import ExercisesOverview from './ExercisesOverview';
 import React from 'react'
 import ExercisesDetails from "./ExercisesDetails";
+import {useTranslation} from 'react-i18next';
+
 
 //Maakt stack naviagtion aan
 const Stack = createStackNavigator();
 
 //Stack navigation voor het exercises sherm
 const StackNav = () => {
+    const { t } = useTranslation();
+
     return (
         <Stack.Navigator
             initialRouteName="ExercisesOverview">
@@ -17,14 +21,14 @@ const StackNav = () => {
                 name="ExercisesOverview"
                 component={ExercisesOverview}
                 options={{
-                    title: 'Exercises',
+                    title: t('exercises'),
                 }}
             />
             <Stack.Screen
                 name="ExercisesDetails"
                 component={ExercisesDetails}
                 options={{
-                    title: 'Exercises Details'
+                    title: t('exercise details')
                 }}
             />
         </Stack.Navigator>

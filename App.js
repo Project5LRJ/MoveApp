@@ -1,6 +1,7 @@
 import 'react-native-gesture-handler';
 import { StatusBar } from 'expo-status-bar';
 import { StyleSheet } from 'react-native';
+import './assets/lang/i18n';
 import { NavigationContainer } from '@react-navigation/native';
 import MaterialCommunityIcons from 'react-native-vector-icons/MaterialCommunityIcons';
 import { createStackNavigator } from '@react-navigation/stack';
@@ -12,12 +13,15 @@ import QrScreen from './components/QrScreen';
 import AboutScreen from './components/AboutScreen';
 import LanguageScreen from './components/LanguageScreen';
 import AppStateContextProvider from "./AppStateContext";
+import {useTranslation} from 'react-i18next';
 
 const Stack = createStackNavigator();
 const Tab = createMaterialBottomTabNavigator();
 
 //Main stack die het loginscherm en de tabnavigator bevat
 const StackNav = () => {
+  const { t } = useTranslation();
+
   return (
     <Stack.Navigator
       initialRouteName="Login"
@@ -41,8 +45,9 @@ const StackNav = () => {
 }
 
 //Tabnavigator die de verschillende schermen bevat
-//TODO: extra screens toevoegen voor exercises en about
 const TabNav = () => {
+  const { t } = useTranslation();
+
   return (
     <Tab.Navigator
         initialRouteName="Exercises"
@@ -52,7 +57,7 @@ const TabNav = () => {
             name="Exercises"
             component={ExercisesScreen}
             options={{
-                tabBarLabel: 'Exercises',
+                tabBarLabel: t('exercises'),
                 tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="arm-flex-outline" color={color} size={24} />
                 ),
@@ -62,7 +67,7 @@ const TabNav = () => {
         name="Achievements" 
         component={AchievementsScreen}
         options={{
-          tabBarLabel: 'Achievements',
+          tabBarLabel: t('achievements'),
           tabBarIcon: ({ color }) => (
             <MaterialCommunityIcons name="medal-outline" color={color} size={24} />
           ),
@@ -71,7 +76,7 @@ const TabNav = () => {
             name="QrScreen"
             component={QrScreen}
             options={{
-                tabBarLabel: 'Qr-Scanner',
+                tabBarLabel: t('qr scanner'),
                 tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="barcode-scan" color={color} size={24} />
                 ),
@@ -80,7 +85,7 @@ const TabNav = () => {
             name="About"
             component={AboutScreen}
             options={{
-                tabBarLabel: 'About',
+                tabBarLabel: t('about'),
                 tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="alpha-i-box-outline" color={color} size={24} />
                 ),
@@ -89,7 +94,7 @@ const TabNav = () => {
             name="Language"
             component={LanguageScreen}
             options={{
-                tabBarLabel: 'Language',
+                tabBarLabel: t('language'),
                 tabBarIcon: ({ color }) => (
                     <MaterialCommunityIcons name="translate" color={color} size={24} />
                 ),

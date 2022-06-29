@@ -2,8 +2,11 @@ import { StyleSheet, View, FlatList, RefreshControl } from 'react-native'
 import React, { useState, useEffect, useContext } from 'react'
 import { Card, Paragraph, Button } from 'react-native-paper';
 import { AppStateContext } from "../AppStateContext";
+import { useTranslation } from 'react-i18next';
 
 const AchievementsOverview = ({ navigation }) => {
+  const { t } = useTranslation();
+  
   const [isLoading, setIsLoading] = useState(true);
   const [achievements, setAchievements] = useState();
 
@@ -60,8 +63,8 @@ const AchievementsOverview = ({ navigation }) => {
           title: item.title,
           description: item.description,
           exercise_id: item.exercise_id
-        })}>Edit</Button>
-        <Button style={styles.cardbutton} mode="outlined" onPress={() => deleteAchievement(item.id)}>Delete</Button>
+        })}>{t('edit')}</Button>
+        <Button style={styles.cardbutton} mode="outlined" onPress={() => deleteAchievement(item.id)}>{t('delete')}</Button>
       </Card.Actions>
     </Card>
   );

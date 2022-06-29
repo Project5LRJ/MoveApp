@@ -4,11 +4,14 @@ import { IconButton } from 'react-native-paper';
 import AchievementsOverview from './AchievementsOverview';
 import AchievementsEdit from './AchievementsEdit';
 import AchievementsCreate from './AchievementsCreate';
+import {useTranslation} from 'react-i18next';
 import React from 'react'
 
 const Stack = createStackNavigator();
 
 const StackNav = () => {
+  const { t } = useTranslation();
+
   return (
     //TODO: extra screen toevoegen voor toevoegen
     <Stack.Navigator
@@ -17,7 +20,7 @@ const StackNav = () => {
         name="AchievementsOverview"
         component={AchievementsOverview}
         options={({navigation}) => ({
-          title: 'Achievements',
+          title: t('achievements'),
           headerRight: () => <IconButton
             icon="plus"
             size={30}
@@ -29,14 +32,14 @@ const StackNav = () => {
         name="AchievementsEdit"
         component={AchievementsEdit}
         options={{
-          title: 'Edit Achievement'
+          title: t('edit achievement')
         }}
       />
         <Stack.Screen
             name="AchievementsCreate"
             component={AchievementsCreate}
             options={{
-                title: 'Create Achievement'
+                title: t('create achievement')
             }}
         />
     </Stack.Navigator>

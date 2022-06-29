@@ -3,11 +3,14 @@ import React, { useState, useEffect, useContext } from 'react';
 import { TextInput, Button } from 'react-native-paper';
 import { Dropdown } from 'react-native-element-dropdown';
 import { AppStateContext } from "../AppStateContext";
+import { useTranslation } from 'react-i18next';
 
 const AchievementsEdit = ({ navigation, route }) => {
+  const { t } = useTranslation();
+
   const [title, setTitle] = useState(route.params.title);
   const [description, setDescription] = useState(route.params.description);
-  const [exerciseId, setExerciseId] = useState(route.params.exercise_id);
+  const [exerciseId, setExerciseId] = useState(parseFloat(route.params.exercise_id));
   const [exercises, setExercises] = useState();
 
   const [titleError, setTitleError] = useState(false);
@@ -83,17 +86,17 @@ const AchievementsEdit = ({ navigation, route }) => {
 
   return (
     <View style={styles.container}>
-      <TextInput style={styles.input} placeholder="Title" value={title} onChangeText={(value) => { setTitle(value) }} error={titleError}/>
-      <TextInput style={styles.inputmultiline} placeholder="Description" value={description} multiline={true} numberOfLines={5} onChangeText={(value) => { setDescription(value) }} error={descriptionError}/>
+      <TextInput style={styles.input} placeholder={t('title')} value={title} onChangeText={(value) => { setTitle(value) }} error={titleError}/>
+      <TextInput style={styles.inputmultiline} placeholder={t('description')} value={description} multiline={true} numberOfLines={5} onChangeText={(value) => { setDescription(value) }} error={descriptionError}/>
       <Dropdown
         style={styles.dropdown}
         data={exercises}
         maxHeight={300}
         labelField="title"
         valueField="id"
-        placeholder="Select exercises"
+        placeholder={t('select exercises')}
         search
-        searchPlaceholder="Search..."
+        searchPlaceholder={t('search')}
         value={exerciseId}
         onChange={item => {
           setExerciseId(item.id);
@@ -101,7 +104,7 @@ const AchievementsEdit = ({ navigation, route }) => {
       />
 
       <Button mode="contained" style={styles.button} onPress={() => saveAchievement()}>
-        Save
+        {t('save')}
       </Button>
     </View>
   )
