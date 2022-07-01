@@ -1,5 +1,5 @@
 //Imports
-import { StyleSheet, View } from 'react-native'
+import { StyleSheet, ScrollView } from 'react-native'
 import { Card, Paragraph } from 'react-native-paper';
 import React from 'react'
 import { useTranslation } from 'react-i18next';
@@ -15,25 +15,25 @@ const ExercisesDetails = ({ route }) => {
     //Het detail scherm
     if (i18n.language == 'nl') {
         return (
-            <View>
+            <ScrollView>
                 <Card style={styles.card}>
                     <Card.Title title={title} />
                     <Card.Content>
                         <Paragraph>{description_NL}</Paragraph>
                     </Card.Content>
                 </Card>
-            </View>
+            </ScrollView>
         );
     } else {
         return (
-            <View>
+            <ScrollView>
                 <Card style={styles.card}>
                     <Card.Title title={title} />
                     <Card.Content>
                         <Paragraph>{description_ENG}</Paragraph>
                     </Card.Content>
                 </Card>
-            </View>
+            </ScrollView>
         );
     }
 }
