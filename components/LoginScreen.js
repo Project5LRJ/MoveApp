@@ -3,8 +3,10 @@ import React, { useState, useContext } from 'react';
 import { TextInput, Button, HelperText } from 'react-native-paper';
 import {useTranslation} from 'react-i18next';
 import { AppStateContext } from "../AppStateContext";
-
+import { apiGlobals } from '../globals';
+ 
 const LoginScreen = ({ navigation }) => {
+  const { apiBase } = apiGlobals;
   const { t } = useTranslation();
 
   const [email, setEmail] = useState("");
@@ -40,7 +42,7 @@ const LoginScreen = ({ navigation }) => {
     if (validate()) {
       try {
         //login API call
-        const response = await fetch('http://summamove.laurenskosters.nl/api/login', {
+        const response = await fetch(`${apiBase}login`, {
           method: 'POST',
           headers: {
             Accept: 'application/json',

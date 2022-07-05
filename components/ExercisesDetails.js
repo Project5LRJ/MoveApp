@@ -4,20 +4,18 @@ import { Card, Paragraph } from 'react-native-paper';
 import React from 'react'
 import { useTranslation } from 'react-i18next';
 
-
 const ExercisesDetails = ({ route }) => {
-
     const { t, i18n } = useTranslation();
 
     //Doorgestuurde variables ophalen
-    const { title, description_NL, description_ENG } = route.params;
+    const { title_NL, title_ENG, description_NL, description_ENG } = route.params;
 
     //Het detail scherm
     if (i18n.language == 'nl') {
         return (
             <ScrollView>
                 <Card style={styles.card}>
-                    <Card.Title title={title} />
+                    <Card.Title title={title_NL} />
                     <Card.Content>
                         <Paragraph>{description_NL}</Paragraph>
                     </Card.Content>
@@ -28,7 +26,7 @@ const ExercisesDetails = ({ route }) => {
         return (
             <ScrollView>
                 <Card style={styles.card}>
-                    <Card.Title title={title} />
+                    <Card.Title title={title_ENG} />
                     <Card.Content>
                         <Paragraph>{description_ENG}</Paragraph>
                     </Card.Content>

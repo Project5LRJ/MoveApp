@@ -4,9 +4,11 @@ import { TextInput, Button } from 'react-native-paper';
 import { Dropdown } from 'react-native-element-dropdown';
 import { AppStateContext } from "../AppStateContext";
 import { useTranslation } from 'react-i18next';
+import { apiGlobals } from '../globals';
 
 const AchievementsCreate = ({ navigation }) => {
-    const { t } = useTranslation();
+    const { t, i18n } = useTranslation();
+    const { apiBase } = apiGlobals;
 
     const [title, setTitle] = useState();
     const [description, setDescription] = useState();
@@ -41,7 +43,7 @@ const AchievementsCreate = ({ navigation }) => {
     //Alle Exercises ophalen
     const fetchExercises = async () => {
         try {
-            const response = await fetch('http://summamove.laurenskosters.nl/api/exercises', {
+            const response = await fetch(`${apiBase}exercises`, {
                 method: 'GET',
                 headers: {
                     Accept: 'application/json',
@@ -59,7 +61,7 @@ const AchievementsCreate = ({ navigation }) => {
     const saveAchievement = async () => {
         if (validate()) {
             try {
-                const response = await fetch(`http://summamove.laurenskosters.nl/api/achievements`, {
+                const response = await fetch(`${apiBase}achievements`, {
                     method: 'POST',
                     headers: {
                         Accept: 'application/json',
@@ -84,30 +86,57 @@ const AchievementsCreate = ({ navigation }) => {
         fetchExercises();
     }, []);
 
-    return (
-        <View style={styles.container}>
-            <TextInput style={styles.input} placeholder={t('title')} value={title} onChangeText={(value) => { setTitle(value) }} error={titleError}/>
-            <TextInput style={styles.inputmultiline} placeholder={t('description')} value={description} multiline={true} numberOfLines={5} onChangeText={(value) => { setDescription(value) }} error={descriptionError}/>
-            <Dropdown
-                style={styles.dropdown}
-                data={exercises}
-                maxHeight={300}
-                labelField="title"
-                valueField="id"
-                placeholder={t('select exercises')}
-                search
-                searchPlaceholder={t('search')}
-                value={exerciseId}
-                onChange={item => {
-                    setExerciseId(item.id);
-                }}
-            />
+    if (i18n.language == 'nl') {
+        return (
+            <View style={styles.container}>
+                <TextInput style={styles.input} placeholder={t('title')} value={title} onChangeText={(value) => { setTitle(value) }} error={titleError} />
+                <TextInput style={styles.inputmultiline} placeholder={t('description')} value={description} multiline={true} numberOfLines={5} onChangeText={(value) => { setDescription(value) }} error={descriptionError} />
+                <Dropdown
+                    style={styles.dropdown}
+                    data={exercises}
+                    maxHeight={300}
+                    labelField="title_NL"
+                    valueField="id"
+                    placeholder={t('select exercises')}
+                    search
+                    searchPlaceholder={t('search')}
+                    value={exerciseId}
+                    onChange={item => {
+                        setExerciseId(item.id);
+                    }}
+                />
 
-            <Button mode="contained" style={styles.button} onPress={() => saveAchievement()}>
-                {t('save')}
-            </Button>
-        </View>
-    )
+                <Button mode="contained" style={styles.button} onPress={() => saveAchievement()}>
+                    {t('save')}
+                </Button>
+            </View>
+        )
+    } else {
+        return (
+            <View style={styles.container}>
+                <TextInput style={styles.input} placeholder={t('title')} value={title} onChangeText={(value) => { setTitle(value) }} error={titleError} />
+                <TextInput style={styles.inputmultiline} placeholder={t('description')} value={description} multiline={true} numberOfLines={5} onChangeText={(value) => { setDescription(value) }} error={descriptionError} />
+                <Dropdown
+                    style={styles.dropdown}
+                    data={exercises}
+                    maxHeight={300}
+                    labelField="title_ENG"
+                    valueField="id"
+                    placeholder={t('select exercises')}
+                    search
+                    searchPlaceholder={t('search')}
+                    value={exerciseId}
+                    onChange={item => {
+                        setExerciseId(item.id);
+                    }}
+                />
+
+                <Button mode="contained" style={styles.button} onPress={() => saveAchievement()}>
+                    {t('save')}
+                </Button>
+            </View>
+        )
+    }
 }
 
 export default AchievementsCreate;

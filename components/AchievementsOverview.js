@@ -3,9 +3,11 @@ import React, { useState, useEffect, useContext } from 'react'
 import { Card, Paragraph, Button } from 'react-native-paper';
 import { AppStateContext } from "../AppStateContext";
 import { useTranslation } from 'react-i18next';
+import { apiGlobals } from '../globals';
 
 const AchievementsOverview = ({ navigation }) => {
   const { t } = useTranslation();
+  const { apiBase } = apiGlobals;
   
   const [isLoading, setIsLoading] = useState(true);
   const [achievements, setAchievements] = useState();
@@ -15,7 +17,7 @@ const AchievementsOverview = ({ navigation }) => {
   const fetchAchievements = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch('http://summamove.laurenskosters.nl/api/user/achievements', {
+      const response = await fetch(`${apiBase}user/achievements`, {
         method: 'GET',
         headers: {
           Accept: 'application/json',
@@ -37,7 +39,7 @@ const AchievementsOverview = ({ navigation }) => {
 
   const deleteAchievement = async (id) => {
     try {
-      const response = await fetch(`http://summamove.laurenskosters.nl/api/achievements/${id}`, {
+      const response = await fetch(`${apiBase}achievements/${id}`, {
         method: 'DELETE',
         headers: {
           Accept: 'application/json',
